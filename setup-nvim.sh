@@ -34,7 +34,9 @@ if [ -z "$FIRST_WORKSPACE" ]; then
   exit 1
 fi
 
-cp -r "$FIRST_WORKSPACE/*" "$HOME"
+shopt -s dotglob 
+cp -r "$FIRST_WORKSPACE/"* "$HOME"
+shopt -u dotglob
 echo "Copied workspace folder '$FIRST_WORKSPACE' to $HOME"
 
 echo "Setup completed successfully."
