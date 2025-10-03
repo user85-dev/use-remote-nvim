@@ -16,7 +16,7 @@ fi
 
 if [ -d "$FIRST_NVDIR/bin" ]; then
   cp -r "$FIRST_NVDIR/bin" "$HOME/bin"
-  echo "Copied 'bin' from $FIRST_NVDIR to $HOME/bin"
+  echo "Copied 'bin' from $FIRST_NVDIR to $HOME/.local/bin"
 else
   echo "Warning: 'bin' directory not found in $FIRST_NVDIR."
 fi
@@ -26,14 +26,13 @@ if [ ! -d "$REMOTE_NVIM_DIR/workspaces" ]; then
   exit 1
 fi
 
-FIRST_WORKSPACE=$(find "$REMOTE_NVIM_DIR/workspaces" -mindepth 1 -maxdepth 1 -type d | head -n 1)
 
-if [ -z "$FIRST_WORKSPACE" ]; then
-  echo "Error: No directories found in 'workspaces'."
-  exit 1
-fi
-
-cp -r "$FIRST_WORKSPACE" "$HOME/.config/"
-echo "Copied workspace folder '$FIRST_WORKSPACE' to $HOME/.config/"
+for dir in "$REMOTE_NVIM_DIR/workspaces"/*/; do
+  if [ -d "$dir" ]; then
+    dir_name=$(basename "$dir")
+    cp -r "$dir" "$HOME/$dir_name"
+    echo "Copied '$dir_name' to $HOME/"
+  fi
+done
 
 echo "Setup completed successfully."
