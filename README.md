@@ -17,4 +17,5 @@ echo "Please remember to hash out sid main from your sources list. /etc/apt/sour
 
 ### Additional resources
 [lazygit](https://github.com/jesseduffield/lazygit?tab=readme-ov-file#debian-and-ubuntu)
+<br/>
 [ripgrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
